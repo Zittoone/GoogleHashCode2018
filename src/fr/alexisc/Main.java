@@ -57,14 +57,27 @@ public class Main {
         int score = 0;
 
         for (Vehicule vehicule : vehicules){
-
+            score += vehicule.getDistanceTotal();
         }
 
         return score;
     }
 
-    public static int closestVehiculeIndex(Vehicule[] vehicules, int x, int y, int date){
+    public static int closestVehiculeIndex(Vehicule[] vehicules, int x, int y){
+        int index, score;
+        index = -1;
+        score = Integer.MAX_VALUE;
+        for (int i = 0; i < vehicules.length; i++){
+            int scoreTemp = scoreTemps(x, y, vehicules[i].x, vehicules[i].y, vehicules[i].date);
+            if(scoreTemp < score){
+                score = scoreTemp;
+                index = i;
+            }
+        }
+        return index;
+    }
 
-        return 0;
+    public static int scoreTemps(int x1, int y1, int x2, int y2, int date){
+        return date + distance(x1, y1, x2, y2);
     }
 }

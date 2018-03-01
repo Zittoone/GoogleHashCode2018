@@ -99,22 +99,7 @@ public class Main {
     public static int scoreTemps(int x1, int y1, int x2, int y2, int date){
         return date + distance(x1, y1, x2, y2);
     }
-    @Deprecated
-    public static Collection <Task> sortTasksFromStartDate(Collection<Task> lTask)
-    {
-        ArrayList<Task> lt = new ArrayList<Task>(lTask);
 
-        lt.sort(new Comparator<Task>() {
-            @Override
-            public int compare(Task t1, Task t2)
-            {
-
-               // return  t1.start_date<t2.start_date;
-            }
-        });
-
-        return lt;
-    }
     public static Task getEarliestTask(Collection<Task> lTask)
     {
         Task ret= new Task(0, 0, 0, 0, 1111111111, 0, 0);

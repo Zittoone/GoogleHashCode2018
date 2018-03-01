@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         // Parser
-        Parser parser = new Parser("res/a_example.in");
+        Parser parser = new Parser("res/d_metropolis.in");
 
         // Writer
-        PrintWriter writer = new PrintWriter("res/a_example.out");
+        PrintWriter writer = new PrintWriter("res/d_metropolis.out");
 
         // Core
         String[] headers = parser.extractLine(" ");

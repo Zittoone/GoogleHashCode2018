@@ -30,4 +30,8 @@ public class Main {
         // Close the writer
         writer.close();
     }
+    public static int distance(int xs, int xd, int ys, int yd)
+    {
+        return Math.abs(xd-xs) + Math.abs(yd-ys);
+    }
 }

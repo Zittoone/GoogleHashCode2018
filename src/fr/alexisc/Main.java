@@ -44,7 +44,7 @@ public class Main {
 
         for (Task t : listTask) {
             int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
-            int date = scoretemps(vehicules[i]);
+            int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
             if (date < t.final_date) {
                 vehicules[i].tasks.add(t);
                 vehicules[i].x = t.x_dest;

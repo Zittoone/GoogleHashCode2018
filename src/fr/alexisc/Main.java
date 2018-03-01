@@ -48,7 +48,20 @@ public class Main {
             index++;
         }
 
-        for (Task t : listTask) {
+        while(!listTask.isEmpty())
+        {
+            Task t= Main.getEarliestTask(listTask);
+            int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
+            int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
+            if (date <= t.final_date) {
+                vehicules[i].tasks.add(t);
+                vehicules[i].x = t.x_dest;
+                vehicules[i].y = t.y_dest;
+                vehicules[i].date = date + t.timeTaken();
+            }
+            listTask.remove(t);
+        }
+        /*for (Task t : listTask) {
             int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
             int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
             if (date <= t.final_date) {
@@ -58,7 +71,7 @@ public class Main {
                 vehicules[i].date = date + t.timeTaken();
             }
 
-        }
+        }*/
 
         for(Vehicule vehicule : vehicules){
             StringBuilder sb = new StringBuilder("");

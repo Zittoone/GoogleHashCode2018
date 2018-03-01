@@ -8,20 +8,17 @@ import java.util.Comparator;
 
 public class Main {
 
-    public static int B;
-
-    public static void main(String[] args) throws FileNotFoundException {
-
-        // Parser
-        Parser parser = new Parser("res/e_high_bonus.in");
+    public static void generateFile (String fname) throws Exception
+    {
+        Parser parser = new Parser(fname+".in");
 
         // Writer
-        PrintWriter writer = new PrintWriter("res/e_high_bonus.out");
+        PrintWriter writer = new PrintWriter(fname+".out");
 
         // Core
         String[] headers = parser.extractLine(" ");
 
-        int R, C, F, N;
+        int R, C, F, N, B;
         long T;
 
         R = Integer.parseInt(headers[0]);
@@ -86,6 +83,26 @@ public class Main {
 
         // Close the writer
         writer.close();
+    }
+    public static void main(String[] args) throws FileNotFoundException {
+
+        String file1= "res/a_example";
+        String file2= "res/b_should_be_easy";
+        String file3= "res/c_no_hurry";
+        String file4= "res/d_metropolis";
+        String file5= "res/e_high_bonus";
+
+        try {
+            generateFile(file1);
+
+        generateFile(file2);
+        generateFile(file3);
+        generateFile(file4);
+        generateFile(file5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     public static int distance(int xs, int xd, int ys, int yd)
     {

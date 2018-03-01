@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 
 public class Main {
 
@@ -66,5 +67,31 @@ public class Main {
     public static int closestVehiculeIndex(Vehicule[] vehicules, int x, int y, int date){
 
         return 0;
+    }
+    @Deprecated
+    public static Collection <Task> sortTasksFromStartDate(Collection<Task> lTask)
+    {
+        ArrayList<Task> lt = new ArrayList<Task>(lTask);
+
+        lt.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2)
+            {
+
+               // return  t1.start_date<t2.start_date;
+            }
+        });
+
+        return lt;
+    }
+    public static Task getEarliestTask(Collection<Task> lTask)
+    {
+        Task ret= new Task(0, 0, 0, 0, 1111111111, 0, 0);
+        for(Task t: lTask)
+        {
+            if (t.start_date< ret.start_date)
+                ret = t;
+        }
+        return ret;
     }
 }

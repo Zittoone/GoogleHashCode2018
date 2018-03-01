@@ -45,16 +45,13 @@ public class Main {
                     Integer.parseInt(line[3]),
                     Integer.parseInt(line[4]),
                     Integer.parseInt(line[5]), index));
-            System.out.println("Toto");
             index++;
         }
 
         for (Task t : listTask) {
             int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
             int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
-            System.out.println("date:" +date + " finaldate " + t.final_date);
             if (date <= t.final_date) {
-                System.out.println("Coucou");
                 vehicules[i].tasks.add(t);
                 vehicules[i].x = t.x_dest;
                 vehicules[i].y = t.y_dest;

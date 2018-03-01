@@ -4,6 +4,8 @@ public class Task {
     public int x_start, y_start, x_dest, y_dest, start_date,final_date;
     public int numTache;
 
+    public int vehiculeIndex;
+
     Task(int xs, int ys,int  xd, int yd, int sd, int infofd, int nt )
     {
         x_start=xs;

@@ -41,8 +41,14 @@ public class Main {
 
         }
 
-        // Print the solution
-        writer.println("it works");
+        for(Vehicule vehicule : vehicules){
+            StringBuilder sb = new StringBuilder("");
+            sb.append(vehicule.tasks.size());
+            for(Task task : vehicule.tasks){
+                sb.append(" ").append(task.numTache);
+            }
+            writer.println(sb.toString());
+        }
 
         // Close the writer
         writer.close();

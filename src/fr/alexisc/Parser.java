@@ -25,6 +25,7 @@ public class Parser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if(line == null) return null;
         return line.split(delimiter);
 
     }

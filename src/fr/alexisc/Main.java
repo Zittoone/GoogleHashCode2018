@@ -48,10 +48,13 @@ public class Main {
                     Integer.parseInt(line[5]), index));
             index++;
         }
+        ArrayList<Task> listTask2 = new ArrayList<Task>(listTask);
 
         while(!listTask.isEmpty())
         {
-            Task t= Main.getEarliestTask(listTask);
+            //Task t= Main.getEarliestTask(listTask);
+            //Task t = Main.getShortestTask(listTask);
+            Task t = Main.getLongestTask(listTask);
             int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
             int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
             if (date <= t.final_date) {
@@ -145,8 +148,30 @@ public class Main {
         Task ret= new Task(0, 0, 0, 0, 1111111111, 0, 0);
         for(Task t: lTask)
         {
-            if (t.start_date< ret.start_date)
+            if (t.start_date+t.timeTaken()< ret.start_date +ret.timeTaken())
                 ret = t;
+        }
+        return ret;
+    }
+    public static Task getLongestTask(Collection<Task> lTask)
+    {
+        int time = -1;
+        Task ret = null;
+        for(Task t : lTask)
+        {
+            if(t.timeTaken() > time)
+                ret=t;
+        }
+        return ret;
+    }
+    public static Task getShortestTask(Collection<Task> lTask)
+    {
+        int time = Integer.MAX_VALUE;
+        Task ret = null;
+        for(Task t : lTask)
+        {
+            if(t.timeTaken() < time)
+                ret=t;
         }
         return ret;
     }

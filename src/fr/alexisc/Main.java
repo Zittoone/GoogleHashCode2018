@@ -30,7 +30,7 @@ public class Main {
         T = Long.parseLong(headers[5]);
 
         Vehicule[] vehicules = new Vehicule[F];
-
+        ArrayList<Task> listTask = new ArrayList<Task>();
         for(int i = 0; i < F; i++){
             vehicules[i] = new Vehicule(0, 0, 0);
         }
@@ -39,8 +39,21 @@ public class Main {
         String[] line;
 
         while((line = parser.extractLine(" ")) != null){
+            //TODO : liste de taches :
+        }
+
+        for (Task t : listTask) {
+            int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
+            int date = scoretemps(vehicules[i]);
+            if (date < t.final_date) {
+                vehicules[i].tasks.add(t);
+                vehicules[i].x = t.x_dest;
+                vehicules[i].y = t.y_dest;
+                vehicules[i].date = date + t.timeTaken();
+            }
 
         }
+
 
         // Print the solution
         writer.println("it works");
@@ -64,7 +77,7 @@ public class Main {
         return score;
     }
 
-    public static int closestVehiculeIndex(Vehicule[] vehicules, int x, int y, int date){
+    public static int closestVehiculeIndex(Vehicule[] vehicules, int x, int y){
 
         return 0;
     }

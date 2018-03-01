@@ -8,6 +8,8 @@ import java.util.Comparator;
 
 public class Main {
 
+    public static int B;
+
     public static void generateFile (String fname) throws Exception
     {
         Parser parser = new Parser(fname+".in");
@@ -18,7 +20,7 @@ public class Main {
         // Core
         String[] headers = parser.extractLine(" ");
 
-        int R, C, F, N, B;
+        int R, C, F, N;
         long T;
 
         R = Integer.parseInt(headers[0]);

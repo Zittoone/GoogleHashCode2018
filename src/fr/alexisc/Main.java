@@ -51,8 +51,22 @@ public class Main {
 
         while(!listTask.isEmpty())
         {
-            Task t= Main.getEarliestTask(listTask);
-            int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
+            // Task t= Main.getEarliestTask(listTask);
+            // int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
+            Task t = null;
+            int i = -1;
+            int score = Integer.MAX_VALUE;
+            for(Task task : listTask){
+                for(int j = 0; j < vehicules.length; j++){
+                    int scoreTemp = scoreTemps(task.x_start, task.y_start, vehicules[j].x, vehicules[j].y, vehicules[j].date);
+                    if((scoreTemp < score) || ((scoreTemp == score) && (score == task.start_date))){
+                        score = scoreTemp;
+                        i = j;
+                        t = task;
+                    }
+
+                }
+            }
             int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
             if (date <= t.final_date) {
                 vehicules[i].tasks.add(t);
@@ -142,6 +156,7 @@ public class Main {
 
     public static Task getEarliestTask(Collection<Task> lTask)
     {
+
         Task ret= new Task(0, 0, 0, 0, 1111111111, 0, 0);
         for(Task t: lTask)
         {

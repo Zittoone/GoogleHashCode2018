@@ -14,7 +14,7 @@ public class Task {
         y_dest=yd;
         start_date=sd;
 
-        final_date= Math.min(0, infofd - Math.abs(xd-xs) - Math.abs(yd-ys));
+        final_date= Math.min(1111111111, infofd - Math.abs(xd-xs) - Math.abs(yd-ys));
         numTache=nt;
     }
 

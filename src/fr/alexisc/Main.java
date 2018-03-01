@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         // Parser
-        Parser parser = new Parser("res/small.in");
+        Parser parser = new Parser("res/a_example.in");
 
         // Writer
-        PrintWriter writer = new PrintWriter("res/small.out");
+        PrintWriter writer = new PrintWriter("res/a_example.out");
 
         // Core
         String[] headers = parser.extractLine(" ");
@@ -40,12 +40,21 @@ public class Main {
 
         while((line = parser.extractLine(" ")) != null){
             //TODO : liste de taches :
+            listTask.add(new Task(Integer.parseInt(line[0]), Integer.parseInt(line [1]),
+                    Integer.parseInt(line[2]),
+                    Integer.parseInt(line[3]),
+                    Integer.parseInt(line[4]),
+                    Integer.parseInt(line[5]), index));
+            System.out.println("Toto");
+            index++;
         }
 
         for (Task t : listTask) {
             int i = closestVehiculeIndex(vehicules, t.x_start, t.y_start);
             int date = scoreTemps(vehicules[i].x, vehicules[i].y, t.x_start, t.y_start, vehicules[i].date);
-            if (date < t.final_date) {
+            System.out.println("date:" +date + " finaldate " + t.final_date);
+            if (date <= t.final_date) {
+                System.out.println("Coucou");
                 vehicules[i].tasks.add(t);
                 vehicules[i].x = t.x_dest;
                 vehicules[i].y = t.y_dest;
@@ -99,22 +108,7 @@ public class Main {
     public static int scoreTemps(int x1, int y1, int x2, int y2, int date){
         return date + distance(x1, y1, x2, y2);
     }
-    @Deprecated
-    public static Collection <Task> sortTasksFromStartDate(Collection<Task> lTask)
-    {
-        ArrayList<Task> lt = new ArrayList<Task>(lTask);
 
-        lt.sort(new Comparator<Task>() {
-            @Override
-            public int compare(Task t1, Task t2)
-            {
-
-               // return  t1.start_date<t2.start_date;
-            }
-        });
-
-        return lt;
-    }
     public static Task getEarliestTask(Collection<Task> lTask)
     {
         Task ret= new Task(0, 0, 0, 0, 1111111111, 0, 0);

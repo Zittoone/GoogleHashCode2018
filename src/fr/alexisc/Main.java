@@ -5,10 +5,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 
 public class Main {
 
     public static int B;
+    public static long T;
 
     public static void generateFile (String fname) throws Exception
     {
@@ -21,7 +23,6 @@ public class Main {
         String[] headers = parser.extractLine(" ");
 
         int R, C, F, N;
-        long T;
 
         R = Integer.parseInt(headers[0]);
         C = Integer.parseInt(headers[1]);
@@ -91,6 +92,31 @@ public class Main {
 
         }*/
 
+        boolean[] taskUnused = new boolean[N];
+        for(int i = 0; i < N; i++){
+            taskUnused[i] = true;
+        }
+
+        for(Vehicule vehicule : vehicules){
+            for(Task task : vehicule.tasks){
+                taskUnused[task.numTache] = false;
+            }
+        }
+
+        for(int i = 0; i < N; i++){
+            if(taskUnused[i]){
+                loopnulle: for(Vehicule vehicule : vehicules){
+                    int indexTaskAdded = vehicule.isValidAddingTask(listTask2.get(i));
+                    if(indexTaskAdded == -1){
+                        
+                    } else {
+                        vehicule.tasks.add(indexTaskAdded, listTask2.get(i));
+                        break loopnulle;
+                    }
+                }
+            }
+        }
+
         for(Vehicule vehicule : vehicules){
             StringBuilder sb = new StringBuilder("");
             sb.append(vehicule.tasks.size());
@@ -112,11 +138,15 @@ public class Main {
         String file5= "res/e_high_bonus";
 
         try {
+            System.out.println("File 1 processing");
             generateFile(file1);
-
+            System.out.println("File 2 processing");
         generateFile(file2);
+            System.out.println("File 3 processing");
         generateFile(file3);
+            System.out.println("File 4 processing");
         generateFile(file4);
+            System.out.println("File 5 processing");
         generateFile(file5);
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,7 +184,7 @@ public class Main {
     }
 
     public static int scoreTemps(int x1, int y1, int x2, int y2, int date){
-        return date + distance(x1, y1, x2, y2);
+        return date + distance(x1, x2, y1, y2);
     }
 
     public static Task getEarliestTask(Collection<Task> lTask)
@@ -188,5 +218,24 @@ public class Main {
                 ret=t;
         }
         return ret;
+    }
+
+    public static int scoreListTask(List<Task> tasks){
+        int x, y, score;
+        x = y = score = 0;
+
+        for(Task task : tasks){
+            int distance = distance(x, task.x_start, y, task.y_start);
+            if(task.start_date >= distance){
+                x = task.x_dest;
+                y = task.y_dest;
+                score += B + task.timeTaken();
+            } else {
+                x = task.x_dest;
+                y = task.y_dest;
+                score += task.timeTaken();
+            }
+        }
+        return score;
     }
 }

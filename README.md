@@ -2,7 +2,7 @@
 
 ## Team Members
 
-* Alexis Couvreur &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Zittoone](https://github.com/Zittoone)
+* Alexis Couvreur &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [acouvreur](https://github.com/acouvreur)
 * Yonathan Bleyfuesz : [JawaGL](https://github.com/JawaGL)
 * Sophie Bernard &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sobernard](https://github.com/Sobernard)
 
